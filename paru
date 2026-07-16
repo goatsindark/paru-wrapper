@@ -323,7 +323,7 @@ chmod 555 "$REAL_PARU" || fail "$EX_LOCK" \
 
 trap 'relock' EXIT HUP INT TERM
 
-runuser -u "$RUN_USER" -- "$REAL_PARU" "${ARGS[@]}"
+script -qfc "runuser -u '$RUN_USER' -- '$REAL_PARU' ${ARGS[*]}" /dev/null
 paru_status=$?
 
 if ! relock; then
